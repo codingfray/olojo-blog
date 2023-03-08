@@ -11,11 +11,11 @@ const Create = () => {
         const blog = {title, body, author };
         console.log(blog)
 
-        setIsPending(true);
+        // setIsPending(true);
 
         fetch('http://localhost:8000/blogs', {
             method: 'POST',
-            header: {"Content-Type": "application/json" },
+            headers: {"Content-Type": "application/json" },
             body: JSON.stringify(blog)
         }).then(() => {
             console.log('New blog added')
@@ -48,8 +48,8 @@ const Create = () => {
                     <option value="mario">Mario</option>
                     <option value="yoshi">Yoshi</option>
                 </select>
-                {!isPending && <button>Add blog</button>}
-                {isPending && <button disabled>Adding blog...</button>}
+                {<button>Add blog</button>}
+                {/* {isPending && <button disabled>Adding blog...</button>} */}
                 <p>{title}</p>
                 <p>{body}</p>
                 <p>{ author }</p>
