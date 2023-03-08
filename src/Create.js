@@ -4,14 +4,13 @@ const Create = () => {
     const [ title, setTitle ] = useState ('');
     const [body, setBody ] = useState ('');
     const [author, setAuthor ] = useState ('mario');
-    const [isPending, setIsPending] = useState ('false');
+    const [isPending, setIsPending] = useState (false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const blog = {title, body, author };
-        console.log(blog)
+        const blog = { title, body, author };
 
-        // setIsPending(true);
+        setIsPending( true );
 
         fetch('http://localhost:8000/blogs', {
             method: 'POST',
@@ -19,6 +18,7 @@ const Create = () => {
             body: JSON.stringify(blog)
         }).then(() => {
             console.log('New blog added')
+            setIsPending(false);
         })
         
     }
@@ -48,11 +48,8 @@ const Create = () => {
                     <option value="mario">Mario</option>
                     <option value="yoshi">Yoshi</option>
                 </select>
-                {<button>Add blog</button>}
-                {/* {isPending && <button disabled>Adding blog...</button>} */}
-                <p>{title}</p>
-                <p>{body}</p>
-                <p>{ author }</p>
+                {!isPending && <button>Add blog</button>}
+                {isPending && <button disabled>Adding blog...</button>}
             </form>
         </div>
     );
